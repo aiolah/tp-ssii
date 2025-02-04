@@ -1,11 +1,9 @@
 package ssii.entity;
 
 import jakarta.persistence.*;
-
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,21 +13,19 @@ import java.util.List;
 @NoArgsConstructor
 @RequiredArgsConstructor // lombok, pour générer un constructeur avec les champs @NonNull
 @ToString
-public class Personne
+public class Projet
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer matricule;
-
-    @NotBlank
-    @NonNull // lombok
-    private String nom;
+    private int code;
 
     @NonNull
-    private String prenom;
+    private String nom;
 
-    private String poste;
+    private LocalDate debut;
 
-    @ManyToMany(mappedBy = "projet")
-    List<Projet> projets = new ArrayList<Projet>();
+    private LocalDate fin;
+
+    @ManyToMany(mappedBy = "personne")
+    List<Personne> participants = new ArrayList<Personne>();
 }
