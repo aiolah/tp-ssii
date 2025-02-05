@@ -25,7 +25,4 @@ public class Projet
     private LocalDate debut;
 
     private LocalDate fin;
-
-    @ManyToMany(mappedBy = "personne")
-    List<Personne> participants = new ArrayList<Personne>();
 }

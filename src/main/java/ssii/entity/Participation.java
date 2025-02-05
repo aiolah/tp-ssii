@@ -1,16 +1,12 @@
 package ssii.entity;
 
 import io.micrometer.common.lang.NonNull;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @RequiredArgsConstructor // lombok, pour générer un constructeur avec les champs @NonNull
 @ToString
 public class Participation
@@ -23,4 +19,14 @@ public class Participation
     private String role;
 
     private Float pourcentage;
+
+    @JoinColumn(name = "personne_id")
+    @ManyToOne
+    // ManyToOne car plusieurs participations pour une personne
+    private Personne participant;
+
+    @JoinColumn(name = "projet_id")
+    @ManyToOne
+    // ManyToOne car plusieurs participations pour un projet
+    private Projet projet;
 }

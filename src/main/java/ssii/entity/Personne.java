@@ -30,6 +30,10 @@ public class Personne
 
     private String poste;
 
-    @ManyToMany(mappedBy = "projet")
-    List<Projet> projets = new ArrayList<Projet>();
+    @JoinColumn(name = "superieur")
+    @ManyToOne
+    private Personne superieur;
+
+    @OneToMany(mappedBy = "superieur")
+    private List<Personne> subordonnes = new ArrayList<>();
 }
